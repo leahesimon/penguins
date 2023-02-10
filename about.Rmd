@@ -1,0 +1,12 @@
+---
+title: "About"
+author: "Leah Simon"
+date: "2023-02-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## This is About file for Penguins website
