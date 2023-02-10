@@ -1,0 +1,56 @@
+---
+title: "Palmer Penguins"
+author: "Leah Simon"
+date: "2023-02-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(palmerpenguins)
+library(tidyverse)
+```
+
+![](https://image.pbs.org/video-assets/Vtw3T4t-asset-mezzanine-16x9-Bf5n3hO.png)
+
+## Data
+Today, we’ll use ggplot to visually explore patterns in morphological traits in three different species of penguin. This data were collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, and were compiled by Dr. Allison Horst and colleagues.
+
+<br>
+
+### Visualizing the dataset
+
+```{r, echo = FALSE}
+colnames(penguins)
+```
+
+## Single trait distribution
+We are investigating the length and depth of the bills of penguins.
+```{r, echo=FALSE}
+penguins %>%
+  ggplot() +
+  geom_density(mapping = aes(x = bill_length_mm, fill=species), alpha=0.5)
+```
+```{r, echo=FALSE}
+ggplot(data = penguins) + 
+  geom_bar(
+     mapping = aes(x = species, y = bill_length_mm, fill = species), 
+     stat = "identity"
+     ) +
+  ggtitle(label = "Length of bill depending on species") +
+  theme(plot.title = element_text(lineheight = 0.9))
+```
+
+
+## Relationship between multiple traits
+We are investigating the relationship between body mass and flipper lengths in penguins. 
+
+```{r, echo=FALSE}
+penguins %>% 
+  ggplot(mapping = aes(x = body_mass_g, y=flipper_length_mm, color=species)) +
+  geom_point() +
+  geom_smooth(method="lm")
+```
+
+
+## Sexual dimorphism
